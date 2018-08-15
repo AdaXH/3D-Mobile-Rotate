@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>3d旋转手机</title>
+    <style>
+        *{ padding:0;margin:0; }
+        #container{
+            width:600px;
+            height: 600px;
+            margin: 0px auto;
+        }
+        .operation{ 
+            width:200px;
+            margin: 50px auto;
+         }
+         ul{list-style: none;}
+         button{
+             width:90px;
+             height: 30px;
+             text-align: center;
+             border: none;
+             outline: none;
+             color:white;
+             cursor: pointer;
+             background: rgb(47, 223, 155);
+         }
+         #render{
+             position: absolute;
+             left:50px;
+             top:50px;
+         }
+    </style>
+    <script type='text/javascript' src='./Mobile.js'></script>
+</head>
+<body>
+    <div id="render"></div>
+    <div class="operation">
+                <button id='start'>开启</button>
+                <button id='end'>移除</button>
+    </div>
+    <div id="container"></div>
+</body>
+<script type='text/javascript'>
+
+    const startBtn = document.getElementById('start')
+    const endBtn = document.getElementById('end')
+    const render = text => document.getElementById('render').innerText = text
+
+    const Menu = new Mobile({
+        target: document.getElementById('container'),                                   /*  @params  */
+        menu: [                                                                         /*  target : 插件显示的容器   */
+            { name: '菜单一', callback: () => render('你点击了菜单一')  },                 /*  menu : 自定义菜单，name菜单名，callback对应的点击时触发的回调   */
+            { name: '菜单二', callback: () => render('你点击了菜单二') },                  /*  menuColor : 菜单文字颜色   */
+            { name: '菜单三', callback: () => render('你点击了菜单三') }                   /*  searchCallback : 搜索的回调   */
+        ],                                                                             /*  bg : 插件的背景图，url地址   */
+        menuColor: 'white',                                                            /* 所有参数都可以不传，插件有默认值 */
+        searchCallback: wd => window.open('https://www.baidu.com/s?word=' + wd),
+        // bg:'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2248538574,2573668818&fm=27&gp=0.jpg'
+    })
+    startBtn.onclick = () => Menu.start()
+    endBtn.onclick = () => Menu.end()
+</script>
+</html>
