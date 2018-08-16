@@ -1,8 +1,9 @@
-// author: Ada
-// web:https://www.adaxh.applinzi.com
+// Author: Ada
+// Web:https://adaxh.applinzi.com
 
 class Mobile {
-    constructor(options){
+    constructor(option){
+        const options = option || {}
         this.items = (options && options.menu && options.menu.length !== 0) ? options.menu : [
             {
                 name : 'menu1',
